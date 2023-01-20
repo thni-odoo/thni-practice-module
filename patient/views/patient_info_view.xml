@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Form -->
+    <record id="patient_info_view" model="ir.ui.view">
+        <field name="name">patient_info_formview</field>
+        <field name="model">patient.info</field>
+        <field name="arch" type="xml">
+            <form class="form o_appointment_appointments_list_form pt-3">
+                <sheet>
+                    <div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="height"/>
+                        </group>
+                        <group>
+                            <field name="weight"/>
+                            <field name="current_medication"/>
+                            <field name="allergies"/>
+                        </group>
+                        <notebook>
+                            <page string="More Details">
+                                <group>
+                                    <group>
+                                        <field name="phone_no"/>
+                                        <field name="allergies_description"/>
+                                    </group>
+                                    <group>
+                                        <field name="address"/>
+                                        <field name="current_medication_description"/>
+                                    </group>
+                                </group>    
+                            </page>
+                        </notebook>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="patient_info_action" model="ir.actions.act_window">
+        <field name="name">Patient_Info</field>
+        <field name="res_model">patient.info</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Click here to create a new tag.
+            </p>
+        </field>
+    </record>
+</odoo>

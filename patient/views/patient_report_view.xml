@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Form -->
+    <record id="patient_report_view" model="ir.ui.view">
+        <field name="name">patient_report_formview</field>
+        <field name="model">patient.report</field>
+        <field name="arch" type="xml">
+            <form class="form o_appointment_appointments_list_form pt-3">
+                <sheet>
+                    <div>
+                        <h1>
+                            <field name="date"/>
+                            <br/>
+                            <field name="title"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="report_type"/>
+                    </group>
+                    <!-- <group> -->
+                    <notebook>
+                        <page string="Basic Report">
+                            <group>
+                                <group>
+                                    <field name="surgical_history"/>
+                                    <field name="addiction"/>
+                                    <field name="physical_activity_level"/>
+                                </group>
+                                <group>
+                                    <field name="armed_forces"/>
+                                    <field name="current_medicine"/>
+                                    <field name="mental_activity_level"/>
+                                    <!-- <field name="physical_activity_level"/>
+                                        <field name="physical_activity_level"/>
+                                        <field name="physical_activity_level"/> -->
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Symptom and Conclusion">
+                            <group>
+                                <field name="today_description"/>
+                                <field name="symptoms"/>
+                                <field name="conclusion"/>
+                                <field name="work_limitation"/>
+
+                            </group>
+                        </page>
+                        <page string="Prescription">
+                            <field name="medicine_info_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="med_days"/>
+                                    <field name="med_when"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="med_days"/>
+                                            <field name="med_when"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Doctor Reference">
+                            <group>
+                            <field name="doctor_tags_ids" widget="many2many_tags"/>
+                            <field name="doctor_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                    <!-- </group> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="patient_report_tree_view" model="ir.ui.view">
+        <field name="name">patient_report_treeview</field>
+        <field name="model">patient.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="title"/>
+                <field name="report_type"/>
+                <field name="symptoms"/>
+                
+            </tree>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="patient_report_action" model="ir.actions.act_window">
+        <field name="name">Report Info</field>
+        <field name="res_model">patient.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Click here to create a new tag.
+            </p>
+        </field>
+    </record>
+</odoo>

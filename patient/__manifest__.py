@@ -11,10 +11,13 @@
     'application': True,
     'auto_install': False,
     'sequence': 1,
+    'depends':['mail',],
 	'data':[
         'security/ir.model.access.csv',
         'views/patient_info_view.xml',
         'views/patient_menus.xml',
+        'views/patient_report_view.xml',
+        
     ],
 
 }

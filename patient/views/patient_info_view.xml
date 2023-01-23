@@ -37,16 +37,24 @@
                                     </group>
                                 </group>    
                             </page>
+                            <page string="Report">
+                                <field name="report_info_ids"/>
+                            </page>
                         </notebook>
 
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                    <field name="activity_ids" />
+               </div>
             </form>
         </field>
     </record>
     <!-- Action -->
     <record id="patient_info_action" model="ir.actions.act_window">
-        <field name="name">Patient_Info</field>
+        <field name="name">Patient Info</field>
         <field name="res_model">patient.info</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">

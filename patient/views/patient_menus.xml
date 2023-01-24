@@ -38,7 +38,7 @@
 
     <menuitem id="patient_root" name="Doctor" web_icon="patient,static/description/icon.png">
         <menuitem id="patient_first_level" name="Patient Info" action="patient_info_action"/>
-        <!-- <menuitem id="patient_first_level_second" name="Patient Report" action="patient_report_action"/> -->
+        <menuitem id="patient_first_level_second" name="Patient Report" action="patient_report_action"/>
     </menuitem>
 
 </odoo>

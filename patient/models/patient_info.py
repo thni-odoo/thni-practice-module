@@ -6,7 +6,7 @@ from odoo import fields, models
 class patient_info(models.Model):
     _name = "patient.info"
     _description = "main module for Patient Info"
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    
 
 
     name = fields.Char(string="Name", required=True)

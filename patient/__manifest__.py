@@ -19,5 +19,8 @@
         'views/patient_report_view.xml',
         
     ],
+     'demo':[
+        'demo/patient_info_demo.xml',
+    ],
 
 }

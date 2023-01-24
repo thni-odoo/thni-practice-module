@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="patient_information_demo1" model="patient.info">
+            <field name="name">karnav</field>
+            <field name="age">21</field>
+            <field name="gender">male</field>
+            <field name="phone_no">45678</field>
+            <field name="email_id">karnav@odoo.com</field>
+            <field name="address">upleta</field>
+            <field name="height">150</field>
+            <field name="weight">70</field>
+        </record>
+        <record id="patient_information_demo2" model="patient.info">
+            <field name="name">raj</field>
+            <field name="age">25</field>
+            <field name="gender">male</field>
+            <field name="phone_no">34567</field>
+            <field name="email_id">raj@odoo.com</field>
+            <field name="address">ahmedabad</field>
+            <field name="height">160</field>
+            <field name="weight">50</field>
+        </record>
+        <record id="patient_information_demo3" model="patient.info">
+            <field name="name">aamir</field>
+            <field name="age">30</field>
+            <field name="gender">male</field>
+            <field name="phone_no">34567</field>
+            <field name="email_id">aamir@odoo.com</field>
+            <field name="address">gandhinagar</field>
+            <field name="height">165</field>
+            <field name="weight">65</field>
+        </record>
+        <record id="patient_report_demo1" model="patient.report">
+            <field name="title">head ache</field>
+            <field name="today_description">having headache</field>
+            <field name="symptoms">headache</field>
+            <field name="conclusion">Viral</field>
+            <field name="addiction">True</field>
+            <field name="report_type">new</field>
+            <field name="state">new</field>
+            <field name="mental_activity_level">low</field>
+            <field name="physical_activity_level">low</field>
+            <field name="patient_id">1</field>
+        </record>
+        <record id="patient_report_demo2" model="patient.report">
+            <field name="title">stomach ache</field>
+            <field name="today_description">having stomach ache</field>
+            <field name="symptoms">stomach ache</field>
+            <field name="conclusion">Viral</field>
+            <field name="addiction">True</field>
+            <field name="report_type">new</field>
+            <field name="state">new</field>
+            <field name="mental_activity_level">medium</field>
+            <field name="physical_activity_level">medium</field>
+            <field name="patient_id">2</field>
+        </record>
+        <record id="patient_report_demo3" model="patient.report">
+            <field name="title">go corona</field>
+            <field name="today_description">cold</field>
+            <field name="symptoms">cold</field>
+            <field name="conclusion">corona</field>
+            <field name="addiction">True</field>
+            <field name="report_type">new</field>
+            <field name="state">new</field>
+            <field name="mental_activity_level">high</field>
+            <field name="physical_activity_level">high</field>
+            <field name="patient_id">3</field>
+        </record>
+    </data>
+</odoo>

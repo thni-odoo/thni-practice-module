@@ -14,6 +14,9 @@
                         </h1>
                     </div>
                     <group>
+                        <field name="email_id"/>
+                    </group>
+                    <group>
                         <group>
                             <field name="age"/>
                             <field name="gender"/>
@@ -35,7 +38,7 @@
                                         <field name="address"/>
                                         <field name="current_medication_description"/>
                                     </group>
-                                </group>    
+                                </group>
                             </page>
                             <page string="Report">
                                 <field name="report_info_ids"/>
@@ -44,11 +47,7 @@
 
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" />
-                    <field name="message_ids" />
-                    <field name="activity_ids" />
-               </div>
+                
             </form>
         </field>
     </record>

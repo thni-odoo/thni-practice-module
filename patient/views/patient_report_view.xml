@@ -96,6 +96,7 @@
                 <field name="title"/>
                 <field name="report_type"/>
                 <field name="symptoms"/>
+                <!-- <button type="action" name="%(patient_report_action)d" string="Go To"/> -->
 
             </tree>
         </field>

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models
+from odoo import fields, models,api
 
 class patient_report(models.Model):
     _name = "patient.report"
     _description = "This is a model to for the report of the patient and it is a one to many "
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    date = fields.Date(string = "Date",default = fields.date.today(),readonly = True)
+    date = fields.Date(string = "Date",default = fields.date.today(),readonly = True,copy=False)
     title = fields.Char(string = "Title",required = True)
     today_description = fields.Text(string = "How is your health today",required = True)
     symptoms = fields.Text(string = "Symptom",required = True)
@@ -29,11 +29,13 @@ class patient_report(models.Model):
             string = "Mental Stress Level",
             selection = [('low', 'Low'), ('medium', 'Medium'),('high','High')],
             required = True)
-    medicine_info_ids = fields.One2many("medicine.info", "report_id", string="Medicine")
+    medicine_info_ids = fields.One2many("medicine.info", "report_id", string="Medicine",copy=False)
     patient_id = fields.Many2one("patient.info",readonly=True)
-    doctor_tags_ids= fields.Many2many("doctor.tags",'doctor_internal_tag_rel', 'reports_id', 'tag_id',string="Doctor Tags")
+    doctor_tags_ids= fields.Many2many("doctor.tags",'doctor_internal_tag_rel', 'reports_id', 'tag_id',string="Doctor Tags",copy=False)
     doctor_id = fields.Many2one('res.users', string='Doctor', default=lambda self: self.env.user)
     state = fields.Selection(   
-        # tracking=True,
+        tracking=True,
         selection = [('new', 'New'),  ('appointmentbooked', 'Appointment Booked'), ('firstmeet', 'First Inspection'),('carriermeet', 'Carrier Inspection'),('recovering', 'Recovering')],string ='State',
-        default='new')
+        default='new',copy=False)
+
+    

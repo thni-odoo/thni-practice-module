@@ -6,6 +6,9 @@ from odoo import fields, models,api
 class patient_info(models.Model):
     _name = "patient.info"
     _description = "main module for Patient Info"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = "prior desc"
+
 
     name = fields.Char(string="Name", required=True)
     age = fields.Integer(string="Age", required=True)
@@ -27,6 +30,11 @@ class patient_info(models.Model):
         string="Current Medication Description")
     report_info_ids = fields.One2many(
         "patient.report", "patient_id", string="Medicine")
+    
+    prior = fields.Selection(
+        selection=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4')],default='1'
+        )
+    # tag=report_info_ids.doctor_tags_ids
 
 
     bmi = fields.Float(string="BMI", compute="_compute_bmi")
@@ -34,7 +42,10 @@ class patient_info(models.Model):
         selection=[('under', 'Under Weight'), ('normal', 'Normal'), ('overweight', 'Overweight'), ('obese', 'Obese')],
         compute="_compute_bmi_wd"
         )
-    
+    state = fields.Selection(   
+        tracking=True,
+        selection = [('new', 'New'),  ('appointmentbooked', 'Appointment Booked'), ('firstmeet', 'First Inspection'),('carriermeet', 'Carrier Inspection'),('recovered', 'Recovered')],string ='State',
+        default='new',copy=False)
 
 
     @api.depends("weight", "height")

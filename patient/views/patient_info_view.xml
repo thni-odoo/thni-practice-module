@@ -6,22 +6,28 @@
         <field name="name">patient_info_treeview</field>
         <field name="model">patient.info</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-muted="state=='recovered'" decoration-bf="state=='firstmeet'or state=='carriermeet'" decoration-success="state=='appointmentbooked' or state=='firstmeet'or state=='carriermeet'">
                 <field name="name" />
                 <field name="email_id"/>
                 <field name="phone_no"/>
                 <field name="gender"/>
                 <field name="address"/>
                 <field name="age"/>
+                <field name="prior" widget="priority"/>
+                <field name="state" invisible="1"/>
             </tree>
         </field>
+        
     </record>
     <!-- Form -->
     <record id="patient_info_form_view" model="ir.ui.view">
         <field name="name">patient_info_formview</field>
         <field name="model">patient.info</field>
         <field name="arch" type="xml">
-            <form class="form o_appointment_appointments_list_form pt-3">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" class="o_field_statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
                     <div>
                         <h1>
@@ -29,31 +35,37 @@
                         </h1>
                     </div>
                     <group>
-                        <field name="email_id"/>
+                        <group>
+                            <field name="email_id" widget="email"/>
+                        </group>
+                        <group>
+                            <field name="prior" widget="priority"/>
+                        </group>
                     </group>
                     <group>
                         <group>
                             <field name="age"/>
-                            <field name="gender"/>
-                            <field name="height"/>
+                            <field name="gender" widget="radio" options="{'horizontal':true}"/>
+                            <field name="allergies"/>
                         </group>
                         <group>
                             <field name="weight"/>
+                            <field name="height"/>
                             <field name="current_medication"/>
-                            <field name="allergies"/>
+
                         </group>
                         <notebook>
                             <page string="More Details">
                                 <group>
                                     <group>
-                                        <field name="phone_no"/>
+                                        <field name="phone_no" widget="phone"/>
                                         <field name="bmi"/>
-                                        <field name="allergies_description"/>
+                                        <field name="allergies_description" attrs="{'invisible': [('allergies', '=', False)]}"/>
                                     </group>
                                     <group>
                                         <field name="address"/>
                                         <field name="bmi_weight"/>
-                                        <field name="current_medication_description"/>
+                                        <field name="current_medication_description" attrs="{'invisible': [('current_medication', '=', False)]}"/>
                                     </group>
                                 </group>
                             </page>
@@ -64,6 +76,7 @@
                                         <field name="title"/>
                                         <field name="report_type"/>
                                         <field name="symptoms"/>
+                                        <!-- <field name="tag"/> -->
                                         <!-- <button type="action" name="%(patient_report_action)d" string="Go To"/> -->
                                     </tree>
                                 </field>
@@ -72,7 +85,11 @@
 
                     </group>
                 </sheet>
-
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                    <field name="activity_ids" />
+                </div>
             </form>
         </field>
     </record>

@@ -13,4 +13,3 @@ class MedName(models.Model):
         ('unique_medname', 'UNIQUE(name)',
          'The Medicine Name should be Unique')
     ]
-

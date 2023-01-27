@@ -14,7 +14,7 @@ class medicine_info(models.Model):
         string="When To Take",
         selection=[('morning', 'Only Morning'), ('blunch', 'Before Lunch'), ('alunch', 'After Lunch'),
                    ('bdinner', 'Before Dinner'), ('adinner', 'After Dinner'), ('mld', 'Morning-Lunch-Dinner')],
-        required=True)
+        required=True,default='morning')
     report_id = fields.Many2one("patient.report", required=True)
 
     _sql_constraints = [

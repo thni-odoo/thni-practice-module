@@ -14,8 +14,8 @@
     'depends':['mail',],
 	'data':[
         'security/ir.model.access.csv',
-        'views/patient_info_view.xml',
         'views/patient_menus.xml',
+        'views/patient_info_view.xml',
         'views/patient_report_view.xml',
         
     ],

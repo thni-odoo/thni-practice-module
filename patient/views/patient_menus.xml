@@ -12,7 +12,7 @@
             </p>
         </field>
     </record>
-    <!-- Action for Partient Report -->
+    <!-- Action for Patient Report -->
     <record id="patient_report_action" model="ir.actions.act_window">
         <field name="name">Report Info</field>
         <field name="res_model">patient.report</field>
@@ -35,6 +35,7 @@
             </p>
         </field>
     </record>
+
 
     <menuitem id="patient_root" name="Doctor" web_icon="patient,static/description/icon.png">
         <menuitem id="patient_first_level" name="Patient Info" action="patient_info_action"/>

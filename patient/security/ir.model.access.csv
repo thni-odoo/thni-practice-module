@@ -1,6 +1,6 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 
-patient.access_patient_info,access_patient_info,patient.model_patient_info,base.group_user,1,1,0,1
+patient.access_patient_info,access_patient_info,patient.model_patient_info,base.group_user,1,1,1,1
 patient.access_patient_report,access_patient_report,patient.model_patient_report,base.group_user,1,1,1,1
 patient.access_medicine_info,access_medicine_info,patient.model_medicine_info,base.group_user,1,1,1,1
 patient.access_doctor_tags,access_doctor_tags,patient.model_doctor_tags,base.group_user,1,1,1,1

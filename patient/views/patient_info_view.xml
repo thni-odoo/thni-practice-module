@@ -14,6 +14,7 @@
                 <field name="address"/>
                 <field name="age"/>
                 <field name="prior" widget="priority"/>
+                <field string="Latest Doctor Tag" name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="state" invisible="1"/>
             </tree>
         </field>
@@ -29,6 +30,11 @@
                     <field name="state" widget="statusbar" class="o_field_statusbar" options="{'clickable': '1'}"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="action" name="%(patient_report_action1)d" icon="fa-stethoscope">
+                            <field string="Reports" name="report_count" widget="statinfo" />
+                        </button>
+                    </div>
                     <div>
                         <h1>
                             <field name="name"/>
@@ -55,22 +61,23 @@
 
                         </group>
                         <notebook>
-                            <page string="More Details">
+                            <page string="More Details and Appointment">
                                 <group>
                                     <group>
                                         <field name="phone_no" widget="phone"/>
+                                        <field name="app_date"/>
                                         <field name="bmi"/>
-                                        <field name="allergies_description" attrs="{'invisible': [('allergies', '=', False)]}"/>
+                                        <field name="allergies_description" attrs="{'invisible': [('allergies', '=', False)],'required':[('allergies', '=', True)]}"/>
                                     </group>
                                     <group>
                                         <field name="address"/>
                                         <field name="bmi_weight"/>
-                                        <field name="current_medication_description" attrs="{'invisible': [('current_medication', '=', False)]}"/>
+                                        <field name="current_medication_description" attrs="{'invisible': [('current_medication', '=', False)],'required':[('current_medication', '=', True)]}"/>
                                     </group>
                                 </group>
                             </page>
-                            <page string="Report">
-                                <field name="report_info_ids">
+                            <page string="Report" attrs="{'invisible': [('state', '=', 'new')]}" >
+                                <field name="report_info_ids" attrs="{'readonly':[('state', '=', 'recovered')]}">
                                     <tree>
                                         <field name="date"/>
                                         <field name="title"/>
@@ -103,26 +110,12 @@
                 <field name="email_id"/>
                 <field name="phone_no"/>
                 <field name="address"/>
-                <!-- <field name="gender"/> -->
-                <!-- <field name="age"/> -->
-                <!-- <separator/> -->
-                <!-- <filter string="State Search" name="search_state" domain="[('state', 'in', ['new','offer_received'])]"/> -->
+                <filter string="Available" name="search_state" domain="[('state', '!=', 'recovered')]"/>
                 <group expand="1" string="Group By">
                     <filter string="Gender" name="search_gender" context="{'group_by':'gender'}"/>
                     <filter string="Age" name="search_age" context="{'group_by':'age'}"/>
                 </group>
             </search>
-        </field>
-    </record>
-    <!-- Action -->
-    <record id="patient_info_action" model="ir.actions.act_window">
-        <field name="name">Patient Info</field>
-        <field name="res_model">patient.info</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                    Click here to create a new tag.
-            </p>
         </field>
     </record>
 </odoo>

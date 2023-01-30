@@ -6,6 +6,7 @@
         <field name="name">Patient Info</field>
         <field name="res_model">patient.info</field>
         <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_search_state': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                     Click here to create a new tag.
@@ -17,12 +18,26 @@
         <field name="name">Report Info</field>
         <field name="res_model">patient.report</field>
         <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[('patient_id', '=', active_id)]</field> -->
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                         Click here to create a new tag.
             </p>
         </field>
     </record>
+
+    <record id="patient_report_action1" model="ir.actions.act_window">
+        <field name="name">Report Info</field>
+        <field name="res_model">patient.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('patient_id', '=', active_id)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                        Click here to create a new tag.
+            </p>
+        </field>
+    </record>
+    
 
     <!-- Action for Doctor Tags -->
     <record id="doctor_tag_action" model="ir.actions.act_window">

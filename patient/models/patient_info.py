@@ -12,7 +12,6 @@ class patient_info(models.Model):
 
     name = fields.Char(string="Name", required=True)
     age = fields.Integer(string="Age", required=True)
-    # gender = fields.Boolean(string="Gender")
     gender = fields.Selection(
         string="Gender",
         selection=[('male', 'Male'), ('female', 'Female')],
@@ -22,7 +21,7 @@ class patient_info(models.Model):
     email_id = fields.Char(string="Email Id", required=True)
     address = fields.Char(string="Address", required=True)
     height = fields.Integer(string="Height(cm)", required=True)
-    weight = fields.Integer(string="Weight(kg)", required=True)
+    weight = fields.Integer(string="Weight(kg)", required=True,default="0")
     current_medication = fields.Boolean(string="Current Medication")
     allergies = fields.Boolean(string="Allergies")
     allergies_description = fields.Text(string="Allergies Description")
@@ -34,9 +33,9 @@ class patient_info(models.Model):
     prior = fields.Selection(
         selection=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4')],default='1'
         )
-    # tag=report_info_ids.doctor_tags_ids
-
-
+    report_count=fields.Integer(string="Reports",compute="_compute_report_count")
+    tags_ids=fields.Many2many(related="report_info_ids.doctor_tags_ids")
+    app_date = fields.Date(string="Appointment Date")
     bmi = fields.Float(string="BMI", compute="_compute_bmi")
     bmi_weight = fields.Selection(string="BMI Weight Distribution",
         selection=[('under', 'Under Weight'), ('normal', 'Normal'), ('overweight', 'Overweight'), ('obese', 'Obese')],
@@ -45,13 +44,32 @@ class patient_info(models.Model):
     state = fields.Selection(   
         tracking=True,
         selection = [('new', 'New'),  ('appointmentbooked', 'Appointment Booked'), ('firstmeet', 'First Inspection'),('carriermeet', 'Carrier Inspection'),('recovered', 'Recovered')],string ='State',
-        default='new',copy=False)
+        default='new',copy=False,compute="_compute_state",readonly=False,store=True)
 
+    @api.depends("report_info_ids")
+    def _compute_report_count(self):
+        for rec in self:
+            rec.report_count=len(self.report_info_ids)
+        
 
     @api.depends("weight", "height")
     def _compute_bmi(self):
-        for record in self:
-            record.bmi=record.weight/((record.height*record.height)/10000)
+        if self.weight!=0 and self.height!=0:
+            for record in self:
+                record.bmi=record.weight/((record.height*record.height)/10000)
+        else:
+            self.bmi=0
+
+
+    @api.depends("report_info_ids","app_date")
+    def _compute_state(self):
+        for rec in self:
+            if rec.report_count==1:
+                rec.state='firstmeet'
+            elif rec.report_count > 1:
+                rec.state='carriermeet'
+            elif rec.app_date:
+                rec.state='appointmentbooked'
 
     @api.depends("bmi")
     def _compute_bmi_wd(self):

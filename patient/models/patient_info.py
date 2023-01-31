@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models,api
+from odoo import fields, models,api,exceptions
 
 
 class patient_info(models.Model):
@@ -64,7 +64,7 @@ class patient_info(models.Model):
     @api.depends("report_info_ids","app_date")
     def _compute_state(self):
         for rec in self:
-            if rec.report_count==1:
+            if rec.report_count == 1:
                 rec.state='firstmeet'
             elif rec.report_count > 1:
                 rec.state='carriermeet'
@@ -82,6 +82,11 @@ class patient_info(models.Model):
                 record.bmi_weight="overweight"
             else :
                 record.bmi_weight="obese"
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_state(self):
+        if self.state not in ['new','recovered']:
+            raise exceptions.UserError("Can't delete an Patient if not in New or Recovered stage!")
 
 
     _sql_constraints = [

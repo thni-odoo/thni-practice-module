@@ -28,10 +28,10 @@ class patient_info(models.Model):
     current_medication_description = fields.Text(
         string="Current Medication Description")
     report_info_ids = fields.One2many(
-        "patient.report", "patient_id", string="Medicine")
+        "patient.report", "patient_id", string="Medicine",tracking=True,)
     
     prior = fields.Selection(
-        selection=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4')],default='1'
+        selection=[('low', 'Low'), ('medium', 'Medium'), ('high', 'High'), ('emergency', 'Emergency')],default='low'
         )
     report_count=fields.Integer(string="Reports",compute="_compute_report_count")
     tags_ids=fields.Many2many(related="report_info_ids.doctor_tags_ids")

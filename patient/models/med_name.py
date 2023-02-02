@@ -8,6 +8,7 @@ class MedName(models.Model):
     _description = "medicine name "
 
     name = fields.Char(string ="Name", required =True)
+    price = fields.Integer(string="Price", required=True)
 
     _sql_constraints = [
         ('unique_medname', 'UNIQUE(name)',

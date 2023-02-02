@@ -51,10 +51,22 @@
         </field>
     </record>
 
+    <record id="medicine_name_action" model="ir.actions.act_window">
+        <field name="name">Medicine Name</field>
+        <field name="res_model">med.name</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                        Click here to create a new tag.
+            </p>
+        </field>
+    </record>
+
 
     <menuitem id="patient_root" name="Doctor" web_icon="patient,static/description/icon.png">
         <menuitem id="patient_first_level" name="Patient Info" action="patient_info_action"/>
         <menuitem id="patient_first_level_second" name="Patient Report" action="patient_report_action"/>
+        <menuitem id="patient_first_level_third" name="Medicine" action="medicine_name_action"/>
     </menuitem>
 
 </odoo>

@@ -31,6 +31,6 @@ class patient_report(models.Model):
             selection = [('low', 'Low'), ('medium', 'Medium'),('high','High')],
             required = True)
     medicine_info_ids = fields.One2many("medicine.info", "report_id", string="Medicine",copy=False)
-    patient_id = fields.Many2one("patient.info",readonly=True)
+    patient_id = fields.Many2one("patient.info",ondelete = 'cascade',readonly=True)
     doctor_tags_ids= fields.Many2many("doctor.tags",'doctor_internal_tag_rel', 'reports_id', 'tag_id',string="Doctor Tags",copy=False)
     doctor_id = fields.Many2one('res.users', string='Doctor', default=lambda self: self.env.user)

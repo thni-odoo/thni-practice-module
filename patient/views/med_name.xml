@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="medicine_name_tree_view" model="ir.ui.view">
+        <field name="name">medicine_name_tree_view</field>
+        <field name="model">med.name</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+                <field name = "price" />
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>

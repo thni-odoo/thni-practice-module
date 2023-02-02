@@ -17,6 +17,7 @@
         'views/patient_menus.xml',
         'views/patient_info_view.xml',
         'views/patient_report_view.xml',
+        'views/med_name.xml',
         
     ],
      'demo':[

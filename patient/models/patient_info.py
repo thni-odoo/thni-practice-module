@@ -71,6 +71,7 @@ class patient_info(models.Model):
             elif rec.app_date:
                 rec.state='appointmentbooked'
 
+
     @api.depends("bmi")
     def _compute_bmi_wd(self):
         for record in self:

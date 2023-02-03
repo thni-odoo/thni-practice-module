@@ -6,6 +6,10 @@ from odoo import fields, models,api
 class medicine_info(models.Model):
     _name = "medicine.info"
     _description = "main module for medicine Info"
+    _sql_constraints = [
+        ('check_med_days', 'CHECK(med_days > 0)',
+         'The Medicine days must be positive.'),
+    ]
 
     medname = fields.Many2one('med.name',string="Medicine Name", required=True)
     # name = fields.Char()
@@ -25,8 +29,4 @@ class medicine_info(models.Model):
             rec.amount=(rec.medname.price*rec.med_days*int(rec.med_when))
     
 
-    _sql_constraints = [
-        ('check_med_days', 'CHECK(med_days > 0)',
-         'The Medicine days must be positive.'),
-    ]
 

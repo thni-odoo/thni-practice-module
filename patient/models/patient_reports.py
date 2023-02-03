@@ -34,3 +34,15 @@ class patient_report(models.Model):
     patient_id = fields.Many2one("patient.info",ondelete = 'cascade',readonly=True)
     doctor_tags_ids= fields.Many2many("doctor.tags",'doctor_internal_tag_rel', 'reports_id', 'tag_id',string="Doctor Tags",copy=False)
     doctor_id = fields.Many2one('res.users', string='Doctor', default=lambda self: self.env.user)
+
+    # @api.model
+
+
+    # @api.model
+    # def create(self, vals):
+    #     res = self.env['estate.property'].browse(vals['property_id'])
+    #     if vals['price'] < res.best_offer:
+    #         raise exceptions.ValidationError(
+    #             "The New offer should be better than the current best offer")
+    #     res.state = 'offer_received'
+    #     return super().create(vals)

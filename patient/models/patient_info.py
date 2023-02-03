@@ -8,6 +8,14 @@ class patient_info(models.Model):
     _description = "main module for Patient Info"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "prior desc"
+    _sql_constraints = [
+        ('check_height', 'CHECK(height > 0)',
+         'The Height must be positive.'),
+         ('check_weight', 'CHECK(weight > 0)',
+         'The Weight must be positive.'),
+         ('check_age', 'CHECK(age > 0)',
+         'The Age must be positive.')
+    ]
 
 
     name = fields.Char(string="Name", required=True)
@@ -44,8 +52,8 @@ class patient_info(models.Model):
     state = fields.Selection(   
         tracking=True,
         selection = [('new', 'New'),  ('appointmentbooked', 'Appointment Booked'), ('firstmeet', 'First Inspection'),('carriermeet', 'Carrier Inspection'),('recovered', 'Recovered')],string ='State',
-        default='new',copy=False,compute="_compute_state",readonly=False,store=True)
-
+        default='new',copy=False,readonly=False,store=True,compute="_compute_state")
+# 
     @api.depends("report_info_ids")
     def _compute_report_count(self):
         for rec in self:
@@ -72,6 +80,7 @@ class patient_info(models.Model):
                 rec.state='appointmentbooked'
 
 
+
     @api.depends("bmi")
     def _compute_bmi_wd(self):
         for record in self:
@@ -90,11 +99,3 @@ class patient_info(models.Model):
             raise exceptions.UserError("Can't delete an Patient if not in New or Recovered stage!")
 
 
-    _sql_constraints = [
-        ('check_height', 'CHECK(height > 0)',
-         'The Height must be positive.'),
-         ('check_weight', 'CHECK(weight > 0)',
-         'The Weight must be positive.'),
-         ('check_age', 'CHECK(age > 0)',
-         'The Age must be positive.')
-    ]

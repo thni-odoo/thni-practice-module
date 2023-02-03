@@ -61,12 +61,34 @@
             </p>
         </field>
     </record>
+    <record id="inittest1_action" model="ir.actions.act_window">
+        <field name="name">inittest1</field>
+        <field name="res_model">init.train</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                        Click here to create a new tag.
+            </p>
+        </field>
+    </record>
+    <record id="inittest_action" model="ir.actions.act_window">
+        <field name="name">inittest</field>
+        <field name="res_model">init.test</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                        Click here to create a new tag.
+            </p>
+        </field>
+    </record>
 
 
     <menuitem id="patient_root" name="Doctor" web_icon="patient,static/description/icon.png">
         <menuitem id="patient_first_level" name="Patient Info" action="patient_info_action"/>
         <menuitem id="patient_first_level_second" name="Patient Report" action="patient_report_action"/>
         <menuitem id="patient_first_level_third" name="Medicine" action="medicine_name_action"/>
+        <menuitem id="patient_first_level_forth" name="Inhert" action="inittest1_action"/>
+        <menuitem id="patient_first_level_forth1" name="Inherttesr" action="inittest_action"/>
     </menuitem>
 
 </odoo>

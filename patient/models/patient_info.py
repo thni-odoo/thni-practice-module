@@ -57,7 +57,7 @@ class patient_info(models.Model):
     @api.depends("report_info_ids")
     def _compute_report_count(self):
         for rec in self:
-            rec.report_count=len(self.report_info_ids)
+            rec.report_count=len(rec.report_info_ids)
         
 
     @api.depends("weight", "height")

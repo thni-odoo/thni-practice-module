@@ -7,6 +7,9 @@
         <field name="model">patient.report</field>
         <field name="arch" type="xml">
             <form class="form o_appointment_appointments_list_form pt-3">
+                <header>
+                    <button name="pat_invo" class="oe_stat_button" type="object" string="Invoice"/>
+                </header>
                 <sheet>
                     <div>
                         <h1>

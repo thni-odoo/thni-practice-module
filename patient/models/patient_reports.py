@@ -2,7 +2,7 @@
 
 from odoo import fields, models,api
 
-class patient_report(models.Model):
+class PatientReport(models.Model):
     _name = "patient.report"
     _description = "This is a model to for the report of the patient and it is a one to many "
     _order = "date desc"
@@ -38,6 +38,10 @@ class patient_report(models.Model):
     # @api.model
 
 
+    def pat_invo(self):
+        pass
+
+    
     # @api.model
     # def create(self, vals):
     #     res = self.env['estate.property'].browse(vals['property_id'])

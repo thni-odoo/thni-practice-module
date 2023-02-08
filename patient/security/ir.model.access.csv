@@ -5,5 +5,5 @@ patient.access_patient_report,access_patient_report,patient.model_patient_report
 patient.access_medicine_info,access_medicine_info,patient.model_medicine_info,base.group_user,1,1,1,1
 patient.access_doctor_tags,access_doctor_tags,patient.model_doctor_tags,base.group_user,1,1,1,1
 patient.access_med_name,access_med_name,patient.model_med_name,base.group_user,1,1,1,1
-patient.access_init_test,access_init_test,patient.model_init_test,base.group_user,1,1,1,1
-patient.access_init_train,access_init_train,patient.model_init_train,base.group_user,1,1,1,1
+patient.access_medi_rename,access_medi_rename,patient.model_medi_rename,base.group_user,1,1,1,1
+patient.access_medical_report,access_medical_report,patient.model_medical_report,base.group_user,1,1,1,1

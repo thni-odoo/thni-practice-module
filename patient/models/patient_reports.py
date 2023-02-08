@@ -31,22 +31,14 @@ class PatientReport(models.Model):
             selection = [('low', 'Low'), ('medium', 'Medium'),('high','High')],
             required = True)
     medicine_info_ids = fields.One2many("medicine.info", "report_id", string="Medicine",copy=False)
+    medical_re_info_ids = fields.One2many("medical.report", "report_id", string="Medical Report",copy=False)
     patient_id = fields.Many2one("patient.info",ondelete = 'cascade',readonly=True)
     doctor_tags_ids= fields.Many2many("doctor.tags",'doctor_internal_tag_rel', 'reports_id', 'tag_id',string="Doctor Tags",copy=False)
     doctor_id = fields.Many2one('res.users', string='Doctor', default=lambda self: self.env.user)
-
-    # @api.model
-
+    task = fields.One2many('project.task',"patient")
 
     def pat_invo(self):
         pass
 
-    
-    # @api.model
-    # def create(self, vals):
-    #     res = self.env['estate.property'].browse(vals['property_id'])
-    #     if vals['price'] < res.best_offer:
-    #         raise exceptions.ValidationError(
-    #             "The New offer should be better than the current best offer")
-    #     res.state = 'offer_received'
-    #     return super().create(vals)
+    def asign_repo(self):
+        pass

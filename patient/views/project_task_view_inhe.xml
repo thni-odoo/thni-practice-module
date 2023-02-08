@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="project_task_view_form_binary" model="ir.ui.view">
+            <field name="name">project.task.view.form.binary</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='extra_info']" position="replace">
+                    <page string="Medical Report">
+                        <field name="report" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

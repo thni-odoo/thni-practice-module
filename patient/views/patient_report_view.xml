@@ -6,9 +6,10 @@
         <field name="name">patient_report_formview</field>
         <field name="model">patient.report</field>
         <field name="arch" type="xml">
-            <form class="form o_appointment_appointments_list_form pt-3">
+            <form>
                 <header>
-                    <button name="pat_invo" class="oe_stat_button" type="object" string="Invoice"/>
+                    <button name="pat_invo" class="oe_highlight" type="object" string="Invoice"/>
+                    <button name="asign_repo" class="oe_highlight" type="object" string="Assign Report"/>
                 </header>
                 <sheet>
                     <div>
@@ -49,6 +50,22 @@
 
                             </group>
                         </page>
+                        <page string="Assigned Medical Report">
+                            <field name="medical_re_info_ids">
+                                <tree>
+                                    <field name="medrename"/>
+                                    <field name="medreprice"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="medrename"/>
+                                            <field name="medreprice"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
                         <page string="Prescription">
                             <field name="medicine_info_ids">
                                 <tree>
@@ -69,6 +86,14 @@
                                 </form>
                             </field>
                         </page>
+                        <page string="Medical Report Result">
+                            <field name="task">
+                                <tree>
+                                    <field name='name'/>
+                                    <field name="report"/>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Doctor Reference">
                             <group>
                                 <field name="doctor_tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
@@ -80,7 +105,7 @@
 
                     <!-- </group> -->
                 </sheet>
-                
+
             </form>
         </field>
     </record>

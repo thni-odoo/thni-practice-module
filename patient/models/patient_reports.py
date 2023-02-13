@@ -36,6 +36,8 @@ class PatientReport(models.Model):
     doctor_tags_ids= fields.Many2many("doctor.tags",'doctor_internal_tag_rel', 'reports_id', 'tag_id',string="Doctor Tags",copy=False)
     doctor_id = fields.Many2one('res.users', string='Doctor', default=lambda self: self.env.user)
     task = fields.One2many('project.task',"patient")
+    assigned = fields.Boolean(default=False,copy=False)
+    invoice=fields.Boolean(default=False,copy=False)
 
     def pat_invo(self):
         pass

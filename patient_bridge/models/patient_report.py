@@ -40,6 +40,7 @@ class PatientReport(models.Model):
     def pat_invo(self):
         # self.env["estate.property"]
         # breakpoint()
+        self.invoice = True
         self.env['account.move'].create({
             'name': 'Patient Invoice',
             'move_type': 'out_invoice',
@@ -56,6 +57,7 @@ class PatientReport(models.Model):
         return super().pat_invo()
 
     def asign_repo(self):
+        self.assigned = True
         self.env['project.project'].create({
             'name': self.patient_id.name,
             'task_ids': [(0, 0, {

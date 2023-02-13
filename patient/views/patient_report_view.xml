@@ -8,50 +8,52 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="pat_invo" class="oe_highlight" type="object" string="Invoice"/>
-                    <button name="asign_repo" class="oe_highlight" type="object" string="Assign Report"/>
+                    <button name="pat_invo" class="oe_highlight" type="object" string="Invoice" attrs="{'invisible':[('invoice','=',True)]}"/>
+                    <button name="asign_repo" class="oe_highlight" type="object" string="Assign Report" attrs="{'invisible':[('assigned','=',True)]}" />
                 </header>
                 <sheet>
                     <div>
                         <h1>
                             <field name="date"/>
                             <br/>
-                            <field name="title"/>
+                            <field name="title" attrs="{'readonly':[('invoice','=',True)]}"/>
+                            <field name="assigned" invisible='1'/>
+                            <field name="invoice" invisible='1'/>
                         </h1>
                     </div>
                     <group>
-                        <field name="report_type"/>
+                        <field name="report_type" attrs="{'readonly':[('invoice','=',True)]}"/>
                     </group>
                     <!-- <group> -->
                     <notebook>
-                        <page string="Basic Report">
+                        <page string="Basic Report" attrs="{'readonly':[('invoice','=',False)]}">
                             <group>
                                 <group>
-                                    <field name="surgical_history"/>
-                                    <field name="addiction"/>
-                                    <field name="physical_activity_level"/>
+                                    <field name="surgical_history" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                    <field name="addiction" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                    <field name="physical_activity_level" attrs="{'readonly':[('invoice','=',True)]}"/>
                                 </group>
                                 <group>
-                                    <field name="armed_forces"/>
-                                    <field name="current_medicine"/>
-                                    <field name="mental_activity_level"/>
+                                    <field name="armed_forces" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                    <field name="current_medicine" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                    <field name="mental_activity_level" attrs="{'readonly':[('invoice','=',True)]}"/>
                                     <!-- <field name="physical_activity_level"/>
                                         <field name="physical_activity_level"/>
                                         <field name="physical_activity_level"/> -->
                                 </group>
                             </group>
                         </page>
-                        <page string="Symptom and Conclusion">
+                        <page string="Symptom and Conclusion" attrs="{'readonly':[('invoice','=',False)]}">
                             <group>
-                                <field name="today_description"/>
-                                <field name="symptoms"/>
-                                <field name="conclusion"/>
-                                <field name="work_limitation"/>
+                                <field name="today_description" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                <field name="symptoms" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                <field name="conclusion" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                <field name="work_limitation" attrs="{'readonly':[('invoice','=',True)]}"/>
 
                             </group>
                         </page>
-                        <page string="Assigned Medical Report">
-                            <field name="medical_re_info_ids">
+                        <page string="Assigned Medical Report" attrs="{'invisible':[('assigned','=', True)]}">
+                            <field name="medical_re_info_ids" >
                                 <tree>
                                     <field name="medrename"/>
                                     <field name="medreprice"/>
@@ -66,8 +68,16 @@
                                 </form>
                             </field>
                         </page>
-                        <page string="Prescription">
-                            <field name="medicine_info_ids">
+                        <page string="Medical Report Result" attrs="{'invisible':[('assigned','=',False)]}" >
+                            <field name="task" readonly='1'>
+                                <tree>
+                                    <field name='name'/>
+                                    <field name="report"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Prescription" attrs="{'readonly':[('invoice','=',True)]}">
+                            <field name="medicine_info_ids" attrs="{'readonly':[('invoice','=',True)]}">
                                 <tree>
                                     <field name="medname"/>
                                     <field name="med_days"/>
@@ -86,19 +96,12 @@
                                 </form>
                             </field>
                         </page>
-                        <page string="Medical Report Result">
-                            <field name="task">
-                                <tree>
-                                    <field name='name'/>
-                                    <field name="report"/>
-                                </tree>
-                            </field>
-                        </page>
+                        
                         <page string="Doctor Reference">
                             <group>
-                                <field name="doctor_tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                                <field name="doctor_id"/>
-                                <field name="patient_id"/>
+                                <field name="doctor_tags_ids" widget="many2many_tags" options="{'color_field': 'color'}" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                <field name="doctor_id" attrs="{'readonly':[('invoice','=',True)]}"/>
+                                <field name="patient_id" attrs="{'readonly':[('invoice','=',True)]}"/>
                             </group>
                         </page>
                     </notebook>

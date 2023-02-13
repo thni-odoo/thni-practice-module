@@ -76,8 +76,8 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Report" attrs="{'invisible': [('state', '=', 'new')]}" >
-                                <field name="report_info_ids" attrs="{'readonly':[('state', '=', 'recovered')]}">
+                            <page string="Report" attrs="{'invisible': [('state', '=', 'new')]}"  >
+                                <field name="report_info_ids" attrs="{'readonly':True}">
                                     <tree>
                                         <field name="date"/>
                                         <field name="title"/>

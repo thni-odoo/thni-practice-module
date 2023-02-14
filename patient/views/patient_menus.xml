@@ -5,7 +5,7 @@
     <record id="patient_info_action" model="ir.actions.act_window">
         <field name="name">Patient Info</field>
         <field name="res_model">patient.info</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
         <field name="context">{'search_default_search_state': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -36,7 +36,6 @@
             </p>
         </field>
     </record>
-    
 
     <!-- Action for Doctor Tags -->
     <record id="doctor_tag_action" model="ir.actions.act_window">
@@ -60,8 +59,6 @@
             </p>
         </field>
     </record>
-
-
 
     <menuitem id="patient_root" name="Doctor" web_icon="patient,static/description/icon.png">
         <menuitem id="patient_first_level" name="Patient Info" action="patient_info_action"/>

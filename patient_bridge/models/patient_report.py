@@ -34,12 +34,8 @@ class PatientReport(models.Model):
             res_list.append(tuple(temp))
         
         return res_list
-            # breakpoint()
-            # return tuple(res_list)
 
     def pat_invo(self):
-        # self.env["estate.property"]
-        # breakpoint()
         self.invoice = True
         self.env['account.move'].create({
             'name': 'Patient Invoice',

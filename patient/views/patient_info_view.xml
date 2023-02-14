@@ -18,7 +18,7 @@
                 <field name="state" invisible="1"/>
             </tree>
         </field>
-        
+
     </record>
     <!-- Form -->
     <record id="patient_info_form_view" model="ir.ui.view">
@@ -76,7 +76,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Report" attrs="{'invisible': [('state', '=', 'new')]}"  >
+                            <page string="Report" attrs="{'invisible': [('state', '=', 'new')]}">
                                 <field name="report_info_ids" attrs="{'readonly':True}">
                                     <tree>
                                         <field name="date"/>
@@ -116,6 +116,30 @@
                     <filter string="Age" name="search_age" context="{'group_by':'age'}"/>
                 </group>
             </search>
+        </field>
+    </record>
+    <record id="patient_info_kanban" model="ir.ui.view">
+        <field name="name">patient_info_kanban</field>
+        <field name="model">patient.info</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <progressbar field="prior" colors='{"low": "success","high":"warning","medium":"primary", "emergency": "danger"}'/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <field name="name"/><br/>
+                            <field name="email_id" widget="email"/><br/>
+                            <field name="gender"/><br/>
+                            <!-- <p><t t-out="record.bmi.raw_value"/></p> -->
+                            <!-- <field name="bmi"/> -->
+                            <field name="prior" widget="priority"/><br/>
+                            <div t-if="record.app_date.raw_value">
+                                Appointment Date : <field name="app_date"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 </odoo>

@@ -24,7 +24,6 @@
                     <group>
                         <field name="report_type" attrs="{'readonly':[('invoice','=',True)]}"/>
                     </group>
-                    <!-- <group> -->
                     <notebook>
                         <page string="Basic Report" attrs="{'readonly':[('invoice','=',False)]}">
                             <group>
@@ -37,9 +36,6 @@
                                     <field name="armed_forces" attrs="{'readonly':[('invoice','=',True)]}"/>
                                     <field name="current_medicine" attrs="{'readonly':[('invoice','=',True)]}"/>
                                     <field name="mental_activity_level" attrs="{'readonly':[('invoice','=',True)]}"/>
-                                    <!-- <field name="physical_activity_level"/>
-                                        <field name="physical_activity_level"/>
-                                        <field name="physical_activity_level"/> -->
                                 </group>
                             </group>
                         </page>
@@ -105,8 +101,6 @@
                             </group>
                         </page>
                     </notebook>
-
-                    <!-- </group> -->
                 </sheet>
 
             </form>
@@ -122,7 +116,6 @@
                 <field name="title"/>
                 <field name="report_type"/>
                 <field name="symptoms"/>
-                <!-- <button type="action" name="%(patient_report_action)d" string="Go To"/> -->
             </tree>
         </field>
     </record>

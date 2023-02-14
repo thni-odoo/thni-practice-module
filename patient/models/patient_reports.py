@@ -44,3 +44,7 @@ class PatientReport(models.Model):
 
     def asign_repo(self):
         pass
+
+    # @api.model
+    # def create(self,vals):
+    #     breakpoint()

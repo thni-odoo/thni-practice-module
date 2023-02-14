@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <record id="project_task_view_form_binary" model="ir.ui.view">
             <field name="name">project.task.view.form.binary</field>
             <field name="model">project.task</field>

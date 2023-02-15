@@ -43,6 +43,7 @@ class patient_info(models.Model):
         )
     report_count=fields.Integer(string="Reports",compute="_compute_report_count")
     tags_ids=fields.Many2many(related="report_info_ids.doctor_tags_ids")
+    doc_id = fields.Many2one(related="report_info_ids.doctor_id")
     app_date = fields.Date(string="Appointment Date")
     bmi = fields.Float(string="BMI", compute="_compute_bmi")
     bmi_weight = fields.Selection(string="BMI Weight Distribution",

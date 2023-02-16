@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="patient_report_pdf">
+        <t t-foreach="docs" t-as="patient">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                        <img t-att-src="image_data_uri(patient.doctor_id.company_id.logo)"/><br/>
+                        <strong>Doctor name: </strong>
+                        <span t-field="patient.doctor_id.name"/><br/>
+                        <strong>Hospital Address: </strong>
+                        <span t-field="patient.doctor_id.company_id.street"/><br/>
+                        <strong>Zip Code: </strong>
+                        <span t-field="patient.doctor_id.company_id.zip"/><br/>
+                        <span t-field="patient.doctor_id.company_id.country_id"/>
+                        <hr/>
+                    <div class="page">
+                        <h1>
+                            <strong>Patient Name:  </strong>
+                            <strong><span t-field="patient.patient_id.name"/></strong><br/>
+                            <span t-field="patient.date"/>
+                        </h1>
+                        <div>
+                            <span t-field="patient.title"/><br/>
+                            <strong>Report Type: </strong>
+                            <span t-field="patient.report_type"/><br/>
+                            <strong>Any Addiction: </strong>
+                            <span t-field="patient.addiction"/><br/>
+                            <strong>Physical Activity Level: </strong>
+                            <span t-field="patient.physical_activity_level"/><br/>
+                            <strong>Mental Stress Level: </strong>
+                            <span t-field="patient.mental_activity_level"/><br/>
+                            <strong>Prescription</strong>
+                            <t t-call="patient.medicine_table"/>
+                            <strong>Medical Report</strong>
+                            <t t-call="patient.medical_report_table"/>
+                            <h2>Doctors' Final Verdict</h2>
+                            <strong>Today Condition: </strong>
+                            <span t-field="patient.today_description"/><br/>
+                            <strong>Symptoms: </strong>
+                            <span t-field="patient.symptoms"/><br/>
+                            <strong>Conclusion: </strong>
+                            <span t-field="patient.conclusion"/><br/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="medicine_table">
+        <t>
+            <table class="table" t-if="patient.medicine_info_ids">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Medicine Course(Days)</th>
+                        <th>When To take</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="offers" t-value="patient.mapped('medicine_info_ids')"/>
+                    <tr t-foreach="offers" t-as="offer">
+                        <td>
+                            <span t-field="offer.medname"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.med_days"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.med_when"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.amount"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <strong t-else="">Currently No Prescription</strong>
+        </t>
+    </template>
+    <template id="medical_report_table">
+        <t>
+            <table class="table" t-if="patient.medical_re_info_ids">
+                <thead>
+                    <tr>
+                        <th>Medical Report Name</th>
+                        <th>Medical Report Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="offers" t-value="patient.mapped('task')"/>
+                    <tr t-foreach="offers" t-as="offer">
+                        <td>
+                            <span t-field="offer.name"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.description"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <strong t-else="">Currently No Medical Reports</strong>
+        </t>
+    </template>
+</odoo>

@@ -18,7 +18,9 @@
         'views/patient_info_view.xml',
         'views/patient_report_view.xml',
         'views/med_name.xml',
-        'views/project_task_view_inhe.xml'
+        'views/project_task_view_inhe.xml',
+        'report/patient_reports.xml',
+        'report/patient_report_templates.xml',
 
 
 
